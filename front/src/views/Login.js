@@ -81,7 +81,7 @@ class Login extends React.Component {
           user,
           res.data["accessToken"]
         );
-        this.props.history.push("/board");
+        this.props.history.push("/");
       })
       .catch(() => {
         alert("이메일 혹은 비밀번호가 틀립니다.");

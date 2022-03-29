@@ -15,28 +15,47 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
+import { Button, Col, Container, Row, UncontrolledCarousel } from "reactstrap";
+
 import React from "react";
 
 // reactstrap components
-import { Button, Container, Row, Col, UncontrolledCarousel } from "reactstrap";
-
-const items = [
-  {
-    src: require("assets/img/theme/img-1-1200x1000.jpg"),
-    altText: "",
-    caption: "",
-    header: ""
-  },
-  {
-    src: require("assets/img/theme/img-2-1200x1000.jpg"),
-    altText: "",
-    caption: "",
-    header: ""
-  }
-];
 
 class Carousel extends React.Component {
   render() {
+    const items = [
+      {
+        src: "http://221.143.144.143:80/" + this.props.topChallenges[0].url,
+        altText: "",
+        caption: "",
+        header: "",
+      },
+      {
+        src: "http://221.143.144.143:80/" + this.props.topChallenges[1].url,
+        altText: "",
+        caption: "",
+        header: "",
+      },
+      {
+        src: "http://221.143.144.143:80/" + this.props.topChallenges[2].url,
+        altText: "",
+        caption: "",
+        header: "",
+      },
+      {
+        src: "http://221.143.144.143:80/" + this.props.topChallenges[3].url,
+        altText: "",
+        caption: "",
+        header: "",
+      },
+      {
+        src: "http://221.143.144.143:80/" + this.props.topChallenges[4].url,
+        altText: "",
+        caption: "",
+        header: "",
+      },
+    ];
     return (
       <>
         <section className="section section-shaped">

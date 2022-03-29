@@ -75,27 +75,28 @@ export default function ChallengeCardList() {
                         <CardImg
                           alt="Card image cap"
                           // src="https://picsum.photos/256/186"
-                          // src={
-                          //   "http://221.143.144.143:80/" + challengeDeatil.url
-                          // }
                           src={
-                            "http://58.122.7.167:9000/" + challengeDeatil.url
+                            "http://221.143.144.143:80/" + challengeDeatil.url
                           }
+                          // src={
+                          //   "http://58.122.7.167:9000/" + challengeDeatil.url
+                          // }
                           top
                           width="100%"
                         />
                       ) : (
                         <video
-                          // src={
-                          //   "http://221.143.144.143:80/" + challengeDeatil.url
-                          // }
                           src={
-                            "http://58.122.7.167:9000/" + challengeDeatil.url
+                            "http://221.143.144.143:80/" + challengeDeatil.url
                           }
+                          // src={
+                          //   "http://58.122.7.167:9000/" + challengeDeatil.url
+                          // }
                           crossOrigin="anonymous"
                           type="type/mp4"
                           controls
-                          width="100%"
+                          height="180px"
+                          width="320px"
                         >
                           비디오 재생 중 에러가 발생했습니다.
                         </video>

@@ -15,6 +15,7 @@ import {
 } from "reactstrap";
 
 import BoardService from "../service/BoardService";
+import Carousel from "components/IndexSections/Carousel.js";
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import Hero from "components/IndexSections/Hero.js";
 import React from "react";
@@ -85,7 +86,7 @@ class Home extends React.Component {
         <DemoNavbar />
         <main ref="main">
           <Hero />
-          <section
+          {/* <section
             className="section section-components pb-0"
             id="section-components"
           >
@@ -123,7 +124,7 @@ class Home extends React.Component {
                 </Row>
               </Col>
             </Container>
-          </section>
+          </section> */}
           <section className="section section-components">
             <Container>
               <Row className="row-grid justify-content-between align-items-center mt-lg">
@@ -292,7 +293,46 @@ class Home extends React.Component {
               {/*<TooltipPopover />*/}
             </Container>
           </section>
-          {/*<Carousel />*/}
+          <section
+            className="section section-components pb-0"
+            id="section-components"
+          >
+            <Container className="mb-10">
+              <Col lg="12">
+                <div>
+                  <h1 className="mb-6">
+                    <span>인기 챌린지</span>
+                  </h1>
+                </div>
+                <Row>
+                  {this.state.topChallenges.map((challenge) =>
+                    challenge.type == "photo" ? (
+                      <Col md="4">
+                        <CardImg
+                          alt="Card image cap"
+                          // src="https://picsum.photos/256/186"
+                          src={"http://221.143.144.143:80/" + challenge.url}
+                          top
+                          height="191px"
+                          width="191px"
+                        />
+                      </Col>
+                    ) : (
+                      <Col md="4">
+                        <ReactPlayer
+                          url={"http://221.143.144.143:80/" + challenge.url}
+                          height="191px"
+                          width="100%"
+                          style={{ marginRight: "10px" }}
+                        />
+                      </Col>
+                    )
+                  )}
+                </Row>
+              </Col>
+            </Container>
+          </section>
+          {/* <Carousel topChallenges={this.state.topChallenges} /> */}
           {/*<Icons />*/}
           {/*<Login />*/}
           {/*<Download />*/}

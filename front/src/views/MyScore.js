@@ -68,7 +68,7 @@ export default function MyScore() {
                 <CardBody className="p-lg-5">
                   <Row className="justify-content-space-between">
                     <Col className="d-flex" md="4">
-                      <div>
+                      <div className="justify-content-center">
                         {trialDetail.type == "photo" ? (
                           <CardImg
                             alt="Card image cap"
@@ -107,6 +107,31 @@ export default function MyScore() {
                         </Button>
                         <div className="flex ">
                           <h3 align="center">{myScore} %</h3>
+                        </div>
+                        {/* <div>
+                          <img src={require("assets/img/brand/fail.jpg")}></img>
+                          <h5 align="center">
+                            더 정확한 자세로 다시 시도해 주세요!
+                          </h5>
+                        </div> */}
+                        <div>
+                          {myScore >= 90 ? (
+                            <div>
+                              <img
+                                src={require("assets/img/brand/success.jpg")}
+                              ></img>
+                              <h5 align="center">챌린지를 통과하셨습니다!</h5>
+                            </div>
+                          ) : (
+                            <div>
+                              <img
+                                src={require("assets/img/brand/fail.jpg")}
+                              ></img>
+                              <h5 align="center">
+                                더 정확한 자세로 다시 시도해 주세요!
+                              </h5>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </Col>
