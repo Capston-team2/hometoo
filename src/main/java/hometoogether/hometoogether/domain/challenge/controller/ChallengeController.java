@@ -7,6 +7,7 @@ import hometoogether.hometoogether.domain.challenge.service.ChallengeService;
 import lombok.RequiredArgsConstructor;
 import org.jcodec.api.JCodecException;
 import org.json.simple.parser.ParseException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -47,8 +48,8 @@ public class ChallengeController {
     }
 
     @GetMapping("/challenges")
-    public List<ChallengeResponseDto> getList(){
-        return challengeService.getChallengeList();
+    public List<ChallengeResponseDto> getList(Pageable pageable){
+        return challengeService.getChallengeList(pageable);
     }
 
     @GetMapping("/challenges/trending")

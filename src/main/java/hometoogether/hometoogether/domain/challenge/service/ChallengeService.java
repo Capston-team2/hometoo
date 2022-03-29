@@ -17,6 +17,7 @@ import org.jcodec.common.model.Picture;
 import org.jcodec.scale.AWTUtil;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -175,10 +176,11 @@ public class ChallengeService {
     }
 
     @Transactional
-    public List<ChallengeResponseDto> getChallengeList() {
+    public List<ChallengeResponseDto> getChallengeList(Pageable pageable) {
 //        Sort sort = Sort.by(Sort.Direction.DESC, "create_date");
-        List<Challenge> challenges = challengeRepository.findAll();
-        return challenges.stream().map(ChallengeResponseDto::new).collect(Collectors.toList());
+//        List<Challenge> challenges = challengeRepository.findAll();
+//        return challenges.stream().map(ChallengeResponseDto::new).collect(Collectors.toList());
+        return challengeRepository.findAll(pageable).map(ChallengeResponseDto::new).getContent();
     }
 
     @Transactional
