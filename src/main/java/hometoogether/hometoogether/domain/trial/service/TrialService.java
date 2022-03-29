@@ -172,13 +172,29 @@ public class TrialService {
         Challenge challenge = trial.getChallenge();
 
         List<Keypoints> keypointsListA = challenge.getChallengePose().getKeypointsList();
-        List<Double> keypointsA = keypointsListA.get(0).getKeypoints();
         List<Keypoints> keypointsListB = trial.getTrialPose().getKeypointsList();
-        List<Double> keypointsB = keypointsListB.get(0).getKeypoints();
 
-        double similarity = poseService.estimateSimilarity(keypointsA , keypointsB);
+        double similarity = 0.0;
+
+        System.out.println("photo.equals(challenge.getType()) = " + "photo".equals(challenge.getType()));
+
+        if ("photo".equals(challenge.getType())){
+            System.out.println("hihi1");
+            List<Double> keypointsA = keypointsListA.get(0).getKeypoints();
+            List<Double> keypointsB = keypointsListB.get(0).getKeypoints();
+            similarity = poseService.estimateSimilarity(keypointsA , keypointsB);
+            System.out.println("similarity for photo = " + similarity);
+        }
+        else {
+            System.out.println("hihi2");
+            System.out.println("challengeId = " + challenge.getId());
+            System.out.println("trialId = " + trialId);
+            similarity = poseService.DTWDistance(keypointsListA, keypointsListB);
+            System.out.println("similarity for video = " + similarity);
+        }
+        System.out.println("similarity result = " + similarity);
         similarity = similarity * 100;
-        similarity = Math.round(similarity * 100) / 100/0;
+        similarity = Math.round(similarity * 100) / 100.0;
         trial.setScore(similarity);
         trialRepository.save(trial);
 

@@ -32,10 +32,10 @@ public class PoseController {
     @GetMapping("/demo/similarity")
     @Transactional
     public double similarity(){
-        Challenge challenge = challengeRepository.findById(1L)
+        Challenge challenge = challengeRepository.findById(14L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. challenge_id=" + 1));
 
-        Trial trial = trialRepository.findById(1L)
+        Trial trial = trialRepository.findById(9L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. trial_id=" + 1));
 
         List<Keypoints> keypointsList1 = challenge.getChallengePose().getKeypointsList();
