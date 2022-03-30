@@ -19,10 +19,10 @@ import {
 } from "reactstrap";
 import React, { useState } from "react";
 
+import DemoNavbar from "../components/Navbars/DemoNavbar";
 import Hero from "./Hero";
 import UserService from "../service/UserService";
 import axios from "axios";
-import DemoNavbar from "../components/Navbars/DemoNavbar";
 
 export default function ChallengeCreate() {
   const [type, setType] = useState("");
@@ -32,7 +32,45 @@ export default function ChallengeCreate() {
     localStorage.getItem("authenticatedUserName")
   );
   const [context, setContext] = useState("");
+  const [url, setUrl] = useState("");
   const [file, setFile] = useState([]);
+
+  const ACCESS_KEY = 'AKIAZMDLODTLIDOJYHDP';
+  const SECRET_ACCESS_KEY = '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';
+  const REGION = "ap-northeast-2";
+  const S3_BUCKET = 'hometoo-bucket';
+
+  AWS.config.update({
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_ACCESS_KEY
+  });
+
+  const myBucket = new AWS.S3({
+    params: { Bucket: S3_BUCKET},
+    region: REGION,
+  });
+
+  const uploadFile = (file) => {
+    const params = {
+      ACL: 'public-read',
+      Body: file,
+      Bucket: S3_BUCKET,
+      Key: "upload/" + file.name
+    };
+    
+    myBucket.putObject(params)
+      .on('httpUploadProgress', (evt) => {
+        setProgress(Math.round((evt.loaded / evt.total) * 100))
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+          setSelectedFile(null);
+        }, 3000)
+      })
+      .send((err) => {
+        if (err) console.log(err)
+      })
+    }
 
   const typeHandler = (e) => {
     e.preventDefault();
@@ -63,6 +101,7 @@ export default function ChallengeCreate() {
   const fileHandler = (e) => {
     e.preventDefault();
     setFile(e.target.files[0]);
+    setUrl(file.name);
   };
 
   const createChallenge = (e) => {
