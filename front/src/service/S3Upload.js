@@ -7,9 +7,7 @@ export default function S3Upload() {
   const [progress , setProgress] = useState(0);
   const [selectedFile, setSelectedFile] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
-
-  const ACCESS_KEY = 'AKIAZMDLODTLIDOJYHDP';
-  const SECRET_ACCESS_KEY = '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';
+  
   const REGION = "ap-northeast-2";
   const S3_BUCKET = 'hometoo-bucket';
 
